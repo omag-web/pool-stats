@@ -1,7 +1,7 @@
 # pool-stats
 
-What public entity risk pool staff are saying about AI and their websites: the questions asked in two interactive 2026 conference sessions, how attendees responded (in general terms) and what it means for pools. Published with GitHub Pages.
+What public entity risk pool staff are saying about AI and their websites: the questions asked in two interactive 2026 conference sessions, how attendees responded (in general terms, with a few figures and charts where they support the point) and what it means for pools. Published with GitHub Pages.
 
-`index.html` is a single static page with no build step and no scripts.
+`index.html` is a single self-contained page with no build step. A small inline script adds scroll animations, a sticky section menu, a reading-progress bar and a back-to-top button; the page reads fine without it.
 
 Section links: `#readiness`, `#agreement`, `#gray-zones`, `#policy`, `#asking`, `#websites`, `#about`. Each question card also has its own link (for example `#q-disclosure` or `#q-directed`).
