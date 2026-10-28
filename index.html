@@ -2,35 +2,439 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Pool Stats · Session Results</title>
-<meta name="description" content="Anonymous live audience results from Matt Burleson's conference sessions for public entity risk pool staff."/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Pool Staff on AI &amp; Websites</title>
+<meta name="description" content="Anonymous live results from 2026 conference sessions for public entity risk pool staff: how pool staff think about AI, where they need clearer guidance, and how their websites measure up."/>
+<meta property="og:title" content="Pool Staff on AI &amp; Websites"/>
+<meta property="og:description" content="How pool staff voted on real-world AI scenarios and an AI policy, plus a FIND audit of pool website pages."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#f6f8fb;--surface:#fff;--ink:#0f172a;--ink-2:#334155;--muted:#64748b;--line:#e2e8f0;--accent:#0e7490;}
-@media (prefers-color-scheme: dark){:root{--bg:#020617;--surface:#0b1424;--ink:#e2f4ff;--ink-2:#b6cde0;--muted:#7d97ad;--line:#1c2c44;--accent:#67e8f9;color-scheme:dark;}}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;}
-main{max-width:720px;margin:0 auto;padding:64px 20px;}
-.eyebrow{font-family:'Share Tech Mono',monospace;letter-spacing:.22em;text-transform:uppercase;font-size:.8rem;color:var(--accent);}
-h1{font-size:clamp(1.9rem,5vw,2.6rem);font-weight:800;letter-spacing:-.02em;margin:10px 0 8px;}
-p{color:var(--ink-2);}
-a.card{display:block;margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;text-decoration:none;color:var(--ink);}
-a.card:hover,a.card:focus-visible{border-color:var(--accent);}
-a.card h2{font-size:1.15rem;font-weight:700;}
-a.card span{display:block;color:var(--muted);font-size:.92rem;margin-top:4px;}
+:root{
+  --bg:#f6f8fb; --surface:#ffffff; --surface-2:#f1f5f9;
+  --ink:#0f172a; --ink-2:#334155; --muted:#64748b; --line:#e2e8f0;
+  --accent:#0891b2; --accent-ink:#0e7490; --accent-soft:#ecfeff;
+  --navy:#020617; --track:#e8eef4; --muted-bar:#94a3b8;
+  --green:#059669; --yellow:#d97706; --red:#dc2626;
+  --s1:#0891b2; --s2:#7c3aed; --s3:#64748b; --on-bar:#ffffff;
+  --r:14px; --shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.06);
+  --mono:'Share Tech Mono',ui-monospace,Menlo,monospace;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#020617; --surface:#0b1424; --surface-2:#0f1b2e;
+    --ink:#e2f4ff; --ink-2:#b6cde0; --muted:#7d97ad; --line:#1c2c44;
+    --accent:#22d3ee; --accent-ink:#67e8f9; --accent-soft:rgba(34,211,238,.08);
+    --track:#14233a; --muted-bar:#4b6380;
+    --green:#34d399; --yellow:#fbbf24; --red:#f87171;
+    --s1:#22d3ee; --s2:#a78bfa; --s3:#7d97ad; --on-bar:#04121f;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#020617; --surface:#0b1424; --surface-2:#0f1b2e;
+  --ink:#e2f4ff; --ink-2:#b6cde0; --muted:#7d97ad; --line:#1c2c44;
+  --accent:#22d3ee; --accent-ink:#67e8f9; --accent-soft:rgba(34,211,238,.08);
+  --track:#14233a; --muted-bar:#4b6380;
+  --green:#34d399; --yellow:#fbbf24; --red:#f87171;
+  --s1:#22d3ee; --s2:#a78bfa; --s3:#7d97ad; --on-bar:#04121f;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:var(--accent-ink);text-underline-offset:3px;}
+a:hover{color:var(--accent);}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+
+.hero{background:var(--navy);color:#e2f4ff;position:relative;overflow:hidden;
+  background-image:linear-gradient(rgba(0,229,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.05) 1px,transparent 1px);background-size:40px 40px;}
+.hero::after{content:'';position:absolute;inset:auto 0 0 0;height:3px;background:linear-gradient(90deg,transparent,#00e5ff,transparent);opacity:.6;}
+.hero-inner{max-width:920px;margin:0 auto;padding:56px max(20px,env(safe-area-inset-right)) 60px max(20px,env(safe-area-inset-left));}
+.eyebrow{font-family:var(--mono);font-size:.82rem;letter-spacing:.24em;text-transform:uppercase;color:#00e5ff;}
+.hero h1{font-size:clamp(2rem,6vw,3.1rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;margin:14px 0 12px;color:#fff;text-wrap:balance;}
+.hero .sub{font-size:clamp(1.05rem,2.4vw,1.2rem);color:#9cc4dd;font-weight:500;max-width:660px;}
+.meta{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:26px;}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:500;color:#cfe8f6;background:rgba(255,255,255,.06);border:1px solid rgba(0,229,255,.22);border-radius:999px;padding:6px 14px;}
+.chip .dot{width:6px;height:6px;border-radius:50%;background:#00e5ff;}
+
+main{max-width:920px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-right)) 64px max(20px,env(safe-area-inset-left));}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px;margin:-32px 0 10px;position:relative;}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px 20px;}
+.stat .num{font-size:2.1rem;font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--accent-ink);font-variant-numeric:tabular-nums;}
+.stat .lbl{font-size:.9rem;color:var(--ink-2);margin-top:6px;line-height:1.4;}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px;}
+.toc a{font-size:.85rem;font-weight:600;text-decoration:none;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;}
+.toc a:hover{border-color:var(--accent);color:var(--accent-ink);}
+
+section{margin-top:56px;scroll-margin-top:20px;}
+.kicker{font-family:var(--mono);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-ink);}
+section > h2{font-size:clamp(1.45rem,3.4vw,1.9rem);font-weight:800;letter-spacing:-.015em;line-height:1.2;margin:6px 0 10px;text-wrap:balance;}
+.lead{color:var(--ink-2);max-width:68ch;}
+.lead + .lead{margin-top:12px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:14px;margin-top:20px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:22px 22px 20px;min-width:0;}
+.card h3{font-size:1.05rem;font-weight:700;line-height:1.35;}
+.card .note{font-size:.88rem;color:var(--muted);margin-top:4px;line-height:1.5;}
+.chart{margin-top:16px;position:relative;}
+.chart svg{display:block;width:100%;height:auto;overflow:visible;}
+.chart text{font-family:var(--sans);}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;list-style:none;margin-top:12px;font-size:.85rem;color:var(--ink-2);}
+.legend li{display:inline-flex;align-items:center;gap:7px;}
+.sw{width:11px;height:11px;border-radius:3px;display:inline-block;flex:none;}
+.callout{background:var(--accent-soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:16px 18px;margin-top:18px;color:var(--ink-2);font-size:.98rem;}
+.callout strong{color:var(--ink);}
+.qlist{list-style:none;display:grid;gap:10px;margin-top:18px;}
+.qlist li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:1rem;color:var(--ink);display:flex;gap:14px;align-items:baseline;}
+.qlist li span{font-family:var(--mono);color:var(--muted);font-size:.85rem;flex:none;}
+.tip{position:absolute;pointer-events:none;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:7px 10px;font-size:.82rem;line-height:1.4;max-width:260px;z-index:5;}
+.tip b{display:block;color:var(--muted);font-weight:500;}
+.method{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;}
+.method h2{font-size:1rem;color:var(--ink-2);margin-bottom:8px;}
+.method ul{padding-left:1.1rem;display:grid;gap:6px;}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:28px 20px 40px;}
+@media (prefers-reduced-motion: no-preference){
+  .bar{transition:width .7s cubic-bezier(.2,.7,.2,1);}
+}
 </style>
 </head>
 <body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">2026 · Session Results</div>
+    <h1>What pool staff told us about AI and their websites</h1>
+    <p class="sub">Anonymous, live results from two 2026 conference sessions for public entity risk pool staff. How pool staff feel about AI, where they agree, where they need clearer guidance, and how their own websites hold up.</p>
+    <div class="meta">
+      <span class="chip"><span class="dot"></span>Two national pool conferences</span>
+      <span class="chip"><span class="dot"></span>Fall 2026</span>
+      <span class="chip"><span class="dot"></span>Presented by Matt Burleson, OMAG</span>
+    </div>
+  </div>
+</header>
+
 <main>
-  <div class="eyebrow">Pool Stats</div>
-  <h1>Session results</h1>
-  <p>Anonymous, live audience results from conference sessions for public entity risk pool staff.</p>
-  <a class="card" href="nlc-risc-2026/">
-    <h2>AI Control Room · NLC-RISC 2026</h2>
-    <span>How pool staff voted on real-world AI scenarios and the building blocks of an AI policy. October 27, 2026.</span>
-  </a>
+  <div class="stats" aria-label="Headline numbers">
+    <div class="stat"><div class="num" data-v="participants"></div><div class="lbl">pool staff voted on AI scenarios from their phones</div></div>
+    <div class="stat"><div class="num" data-v="pq4.B"></div><div class="lbl">say AI never shifts accountability away from the employee</div></div>
+    <div class="stat"><div class="num" data-v="pulse-close-2.A"></div><div class="lbl">felt unprepared to make AI decisions by the end</div></div>
+    <div class="stat"><div class="num" data-v="pq5.C"></div><div class="lbl">would not disclose AI help to members if a person reviewed it</div></div>
+    <div class="stat"><div class="num" data-v="web.anyGap"></div><div class="lbl">of pool web pages audited failed at least one FIND test</div></div>
+    <div class="stat"><div class="num" data-v="web.directed"></div><div class="lbl">of audited pages gave members no clear next step</div></div>
+  </div>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#mood">Mood &amp; readiness</a>
+    <a href="#agreement">Where we agree</a>
+    <a href="#gray-zones">Gray zones</a>
+    <a href="#policy">Policy votes</a>
+    <a href="#dilemmas">Real dilemmas</a>
+    <a href="#websites">Pool websites</a>
+    <a href="#about">About the data</a>
+  </nav>
+
+  <section id="mood">
+    <div class="kicker">01 · Mood &amp; readiness</div>
+    <h2>The room got more confident, not more nervous</h2>
+    <p class="lead">We asked the same question at the start and end of the session. Enthusiasm grew over the hour and worry stayed low. Of the <span data-v="shift.both"></span> phones that answered both times, <span data-v="shift.up"></span> moved toward embracing AI and <span data-v="shift.down"></span> moved away from it.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>How are you feeling about AI right now?</h3>
+        <p class="note">Share of phones choosing each answer.</p>
+        <ul class="legend"><li><span class="sw" style="background:var(--muted-bar)"></span>Start of session</li><li><span class="sw" style="background:var(--s1)"></span>End of session</li></ul>
+        <div class="chart" id="c-mood"></div>
+      </div>
+      <div class="card">
+        <h3>How prepared do you feel to make AI decisions in your organization?</h3>
+        <p class="note">Asked at the end of the session.</p>
+        <div class="chart" id="c-ready"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="agreement">
+    <div class="kicker">02 · Where we agree</div>
+    <h2>AI drafts. People verify and decide.</h2>
+    <p class="lead">Whenever a scenario put AI in front of members or put a decision about a person on the line, the room chose the option that kept a human in charge. This is the strongest finding of the session.</p>
+    <div class="card" style="margin-top:20px">
+      <h3>Share choosing the human-in-the-loop answer</h3>
+      <p class="note">Hover or tap a bar for the full question and answer.</p>
+      <div class="chart" id="c-agree"></div>
+    </div>
+    <div class="callout"><strong>Right-sized tools, too.</strong> Given a simple, low-stakes task (rewriting a short member webinar announcement), <span data-v="pick-ai.A"></span> chose a fast, low-cost AI model over a more powerful one.</div>
+  </section>
+
+  <section id="gray-zones">
+    <div class="kicker">03 · Gray zones</div>
+    <h2>Where pool staff need clearer rules</h2>
+    <p class="lead">Staff rated four requests from the fictional member city of Riscville as green (normal work), yellow (add safeguards) or red (stop or reframe). The splits show where well-meaning people make different calls on the same request.</p>
+    <div class="card" style="margin-top:20px">
+      <h3>Green, yellow or red?</h3>
+      <p class="note">The outlined segment is the answer the session was designed to teach.</p>
+      <ul class="legend"><li><span class="sw" style="background:var(--green)"></span>Green: normal work</li><li><span class="sw" style="background:var(--yellow)"></span>Yellow: add safeguards</li><li><span class="sw" style="background:var(--red)"></span>Red: stop or reframe</li></ul>
+      <div class="chart" id="c-traffic"></div>
+    </div>
+    <div class="callout"><strong>Risk by department, not by data.</strong> Writing interview questions from a public job posting was meant to be an easy green, yet <span data-v="tc2.B"></span> of the room slowed it to yellow. The word "HR" did the work, even though nothing sensitive was involved.</div>
+  </section>
+
+  <section id="policy">
+    <div class="kicker">04 · Policy votes</div>
+    <h2>The room's AI policy, one question at a time</h2>
+    <p class="lead">The final part of the session asked the room to build an AI policy together. Most answers point to a clear consensus. Sensitive data and member disclosure are the two to settle deliberately.</p>
+    <div class="card" style="margin-top:20px">
+      <h3>How the room voted</h3>
+      <p class="note">Each bar is one question. Options are listed under each bar.</p>
+      <div class="chart" id="c-policy"></div>
+    </div>
+    <div class="callout"><strong>A note on disclosure.</strong> The AI-generated summary shown live in the session described the room as mostly favoring disclosure for significant content. The actual vote went the other way: <span data-v="pq5.C"></span> said no disclosure is needed when a person has reviewed the work. The chart above shows the real numbers.</div>
+  </section>
+
+  <section id="dilemmas">
+    <div class="kicker">05 · Real dilemmas</div>
+    <h2>What pool staff are actually asking</h2>
+    <p class="lead">Attendees submitted the real AI questions they face at work, anonymously and as typed. Most touch personal information, employment decisions, claims data or rating, and two suggest staff are already experimenting without an approved tool.</p>
+    <ul class="qlist" id="dilemma-list"></ul>
+  </section>
+
+  <section id="websites">
+    <div class="kicker">06 · Pool websites</div>
+    <h2>Members can find the page. Then they get stuck.</h2>
+    <p class="lead">In a session on improving pool websites, attendees scored <span data-v="web.n"></span> pages from their own pool's site against the FIND framework: is the page <strong>Findable</strong>, <strong>Intuitive</strong>, <strong>Necessary</strong> and <strong>Directed</strong> toward a clear next step? Each "no" or "not sure" adds a point, so higher scores mean more problems.</p>
+    <p class="lead">The average page scored <span data-v="web.avg"></span> out of 4, and <span data-v="web.three"></span> failed three or more of the four tests. The most common failure was a missing next step: pages that don't tell members what to do.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Pages failing each FIND test</h3>
+        <p class="note">Share of audited pages answered "no" or "not sure."</p>
+        <div class="chart" id="c-find"></div>
+      </div>
+      <div class="card">
+        <h3>FIND score per page</h3>
+        <p class="note">Number of pages at each score. 0 means no problems flagged; 4 means every test failed.</p>
+        <div class="chart" id="c-scores"></div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>Friction points flagged</h3>
+        <p class="note">Share of audited pages with each problem checked.</p>
+        <div class="chart" id="c-friction"></div>
+      </div>
+      <div class="card">
+        <h3>Average score by page type</h3>
+        <p class="note">Higher means more problems. Some page types had only one audit.</p>
+        <div class="chart" id="c-pages"></div>
+      </div>
+    </div>
+    <div class="callout"><strong>Why this matters for AI.</strong> Members increasingly ask AI tools their questions instead of browsing pool websites, and those tools read our pages to answer. Clear, current pages with an obvious next step get summarized correctly. Cluttered ones get misread or skipped.</div>
+  </section>
+
+
+  <section class="method" id="about">
+    <h2>About the data</h2>
+    <ul>
+      <li>Sections 01 to 05 come from an interactive session on leveraging AI, held at a national pool staff conference in October 2026. Section 06 comes from a session on using AI to improve pool websites, held at a national pool conference in early October 2026.</li>
+      <li>Voting was anonymous. No names, emails or organizations were collected, and attendees were asked not to enter sensitive information.</li>
+      <li>AI session percentages count one vote per phone per question, using each phone's final answer, so they may differ slightly from the live totals shown in the room. Between 31 and 49 phones answered each question.</li>
+      <li>Website audits were scored by attendees on pages from their own pool's website and shared anonymously (page type, score and flagged issues only, no URLs).</li>
+      <li>Attendees chose to be in the room. Treat these results as a snapshot of engaged pool staff, not a statistical survey of the industry.</li>
+      <li>The prompt-writing exercise and the live bonus-round vote are not included because there were too few usable responses.</li>
+    </ul>
+  </section>
 </main>
+<footer>Matt Burleson · Oklahoma Municipal Assurance Group (OMAG)</footer>
+
+<script>
+const DATA = {"participants": 60, "shift": {"both": 27, "up": 7, "down": 0}, "q": {"pulse-open": {"q": "How are you feeling about AI right now?", "label": "Start of session", "n": 47, "opts": [{"id": "A", "a": "Mostly concerned", "n": 3, "p": 6, "intended": false}, {"id": "B", "a": "Interested, but cautious", "n": 18, "p": 38, "intended": false}, {"id": "C", "a": "Already using it", "n": 17, "p": 36, "intended": false}, {"id": "D", "a": "Give me all the AI", "n": 9, "p": 19, "intended": false}]}, "pick-ai": {"q": "Which model would you choose for this job?", "label": "Pick the AI", "n": 48, "opts": [{"id": "A", "a": "FAST — quick, routine work, lower cost", "n": 34, "p": 71, "intended": false}, {"id": "B", "a": "BALANCED — everyday professional work", "n": 13, "p": 27, "intended": false}, {"id": "C", "a": "DEEP — complex reasoning, slower, costs more", "n": 1, "p": 2, "intended": false}]}, "trust-check": {"q": "Was AI's answer trustworthy?", "label": "Trust check", "n": 47, "opts": [{"id": "A", "a": "YES — it accurately quoted the policy", "n": 1, "p": 2, "intended": false}, {"id": "B", "a": "NO — it should have flagged the conflict", "n": 40, "p": 85, "intended": false}, {"id": "C", "a": "IT DEPENDS on which section actually governs", "n": 6, "p": 13, "intended": false}]}, "tc1": {"q": "What light would you give Riscville on this one?", "label": "Safety tips from a public bulletin", "n": 46, "opts": [{"id": "A", "a": "GREEN — normal work", "n": 42, "p": 91, "intended": true}, {"id": "B", "a": "YELLOW — slow down, add safeguards", "n": 4, "p": 9, "intended": false}, {"id": "C", "a": "RED — stop or reframe", "n": 0, "p": 0, "intended": false}]}, "tc2": {"q": "What light would you give Riscville on this one?", "label": "Interview questions from a public job post", "n": 49, "opts": [{"id": "A", "a": "GREEN — normal work", "n": 26, "p": 53, "intended": true}, {"id": "B", "a": "YELLOW — slow down, add safeguards", "n": 22, "p": 45, "intended": false}, {"id": "C", "a": "RED — stop or reframe", "n": 1, "p": 2, "intended": false}]}, "tc3": {"q": "What light would you give Riscville on this one?", "label": "Medical records in a personal AI account", "n": 49, "opts": [{"id": "A", "a": "GREEN — normal work", "n": 0, "p": 0, "intended": false}, {"id": "B", "a": "YELLOW — slow down, add safeguards", "n": 0, "p": 0, "intended": false}, {"id": "C", "a": "RED — stop or reframe", "n": 49, "p": 100, "intended": true}]}, "tc4": {"q": "What light would you give Riscville on this one?", "label": "Trends in 5,000 anonymized incidents", "n": 48, "opts": [{"id": "A", "a": "GREEN — normal work", "n": 16, "p": 33, "intended": false}, {"id": "B", "a": "YELLOW — slow down, add safeguards", "n": 32, "p": 67, "intended": true}, {"id": "C", "a": "RED — stop or reframe", "n": 0, "p": 0, "intended": false}]}, "guardrail": {"q": "What happens when this request goes to AI?", "label": "HR complaint", "n": 47, "opts": [{"id": "A", "a": "AI reviews the complaint, determines guilt, and recommends discipline", "n": 0, "p": 0, "intended": false}, {"id": "B", "a": "Reframe the task: organize allegations, identify relevant policy sections, generate questions for a human investigator", "n": 35, "p": 74, "intended": false}, {"id": "C", "a": "Decline to use AI for this entirely, keep it fully manual", "n": 12, "p": 26, "intended": false}]}, "m-press": {"q": "How should your team handle this request?", "label": "Press release", "n": 47, "opts": [{"id": "A", "a": "Run the AI release as written after the executive director approves it", "n": 1, "p": 2, "intended": false}, {"id": "B", "a": "Use AI to draft the release but verify every specific fact against primary sources before sending", "n": 44, "p": 94, "intended": false}, {"id": "C", "a": "Decline to use AI for press releases because accuracy cannot be guaranteed", "n": 2, "p": 4, "intended": false}]}, "verdict-press": {"q": "Would you use this workflow in your organization?", "label": "Press release workflow", "n": 37, "opts": [{"id": "A", "a": "USE IT — ready with normal review", "n": 16, "p": 43, "intended": false}, {"id": "B", "a": "REVIEW IT — helpful, but needs work", "n": 21, "p": 57, "intended": false}, {"id": "C", "a": "DON'T USE IT — not appropriate or trustworthy", "n": 0, "p": 0, "intended": false}]}, "m-water": {"q": "What is the best use of AI right now?", "label": "Storm response", "n": 42, "opts": [{"id": "A", "a": "DEEP: Use AI to draft a full catastrophe response and communications plan", "n": 0, "p": 0, "intended": false}, {"id": "B", "a": "FAST: Use AI to draft an immediate message to members with confirmed reporting steps, reviewed before sending", "n": 41, "p": 98, "intended": false}, {"id": "C", "a": "FAST: Let AI answer members' coverage questions in real time, unreviewed", "n": 1, "p": 2, "intended": false}]}, "verdict-water": {"q": "Would you use this workflow in your organization?", "label": "Storm message workflow", "n": 40, "opts": [{"id": "A", "a": "USE IT", "n": 29, "p": 72, "intended": false}, {"id": "B", "a": "REVIEW IT", "n": 11, "p": 28, "intended": false}, {"id": "C", "a": "DON'T USE IT", "n": 0, "p": 0, "intended": false}]}, "pq1": {"q": "Should employees be limited to organization-approved AI tools?", "label": "Approved AI tools only?", "n": 41, "opts": [{"id": "A", "a": "Yes — approved tools only", "n": 28, "p": 68, "intended": false}, {"id": "B", "a": "Approved tools for work data; anything for brainstorming", "n": 13, "p": 32, "intended": false}, {"id": "C", "a": "No restriction — employee judgment", "n": 0, "p": 0, "intended": false}]}, "pq2": {"q": "Which AI outputs require human review before they're used?", "label": "What needs human review?", "n": 40, "opts": [{"id": "A", "a": "Everything, every time", "n": 24, "p": 60, "intended": false}, {"id": "B", "a": "Only Yellow/Red-level work — data, HR, legal, high-impact decisions", "n": 16, "p": 40, "intended": false}, {"id": "C", "a": "Only autonomous high-impact decisions", "n": 0, "p": 0, "intended": false}]}, "pq3": {"q": "Where's the line for sensitive organizational information?", "label": "Where sensitive data can go", "n": 41, "opts": [{"id": "A", "a": "Never leaves an approved, org-controlled environment", "n": 28, "p": 68, "intended": false}, {"id": "B", "a": "Anonymized or aggregated data is fine anywhere", "n": 11, "p": 27, "intended": false}, {"id": "C", "a": "Case-by-case, based on who's asking", "n": 2, "p": 5, "intended": false}]}, "pq4": {"q": "Does using AI transfer accountability away from the employee who used it?", "label": "Does AI shift accountability?", "n": 41, "opts": [{"id": "A", "a": "Yes", "n": 0, "p": 0, "intended": false}, {"id": "B", "a": "No", "n": 41, "p": 100, "intended": false}]}, "pq5": {"q": "Should members be told when AI helped create something they receive from the pool?", "label": "Tell members when AI helped?", "n": 41, "opts": [{"id": "A", "a": "Always disclose", "n": 4, "p": 10, "intended": false}, {"id": "B", "a": "Only for significant content — coverage letters, claims communications, legal guidance", "n": 9, "p": 22, "intended": false}, {"id": "C", "a": "No, as long as a human reviewed it", "n": 28, "p": 68, "intended": false}]}, "pulse-close": {"q": "How are you feeling about AI now?", "label": "End of session", "n": 38, "opts": [{"id": "A", "a": "Mostly concerned", "n": 2, "p": 5, "intended": false}, {"id": "B", "a": "Interested, but cautious", "n": 9, "p": 24, "intended": false}, {"id": "C", "a": "Already using it", "n": 12, "p": 32, "intended": false}, {"id": "D", "a": "Give me all the AI", "n": 15, "p": 39, "intended": false}]}, "pulse-close-2": {"q": "How prepared do you feel to make AI decisions in your organization?", "label": "Readiness", "n": 31, "opts": [{"id": "A", "a": "Not prepared", "n": 0, "p": 0, "intended": false}, {"id": "B", "a": "I know what questions to ask", "n": 9, "p": 29, "intended": false}, {"id": "C", "a": "I could help establish guardrails", "n": 14, "p": 45, "intended": false}, {"id": "D", "a": "I'm ready to lead the conversation", "n": 8, "p": 26, "intended": false}]}}, "dilemmas": ["Can I utilize autonomous ai for my local government job?", "Should I use AI to write disciplinary memo (like probation) for an employee?", "I want to have AI summarize a claim that is lengthy and complicated. Without AI how do I anonymize it?", "Help create a monthly newsletter topic for the next year", "Using your personal account to do work tasks.", "Can I upload loss data that includes employee names into copilot that is supposedly closed, for analysis?", "Should AI be used to determine experience modifiers?"], "audits": [{"page": "Training", "score": 2, "flags": ["Necessary", "Directed"], "friction": ["Outdated content", "Too many links", "Hidden important information", "Confusing navigation", "Other", "Not mobile-friendly", "Needs accessibility review", "Inconsistent tone", "Missing call to action", "Internal language"]}, {"page": "Claims", "score": 0, "flags": [], "friction": []}, {"page": "Training", "score": 1, "flags": ["Findable"], "friction": ["Too many links", "Confusing navigation", "Needs accessibility review"]}, {"page": "Contact", "score": 3, "flags": ["Findable", "Intuitive", "Directed"], "friction": ["Hidden important information", "Missing call to action", "Confusing navigation", "Not mobile-friendly"]}, {"page": "Claims", "score": 4, "flags": ["Findable", "Intuitive", "Necessary", "Directed"], "friction": ["Not mobile-friendly", "Inconsistent tone"]}, {"page": "Training", "score": 3, "flags": ["Findable", "Intuitive", "Directed"], "friction": ["Internal language", "Too many links", "Missing call to action"]}, {"page": "Training", "score": 1, "flags": ["Findable"], "friction": []}, {"page": "Member Resources", "score": 0, "flags": [], "friction": ["Missing call to action", "Confusing navigation", "Outdated content", "Internal language", "Too many links"]}, {"page": "Claims", "score": 0, "flags": [], "friction": []}, {"page": "Member Resources", "score": 3, "flags": ["Findable", "Intuitive", "Directed"], "friction": ["Confusing navigation", "Not mobile-friendly"]}, {"page": "Member Resources", "score": 3, "flags": ["Intuitive", "Necessary", "Directed"], "friction": ["Hidden important information", "Missing call to action", "Confusing navigation", "Needs accessibility review", "Internal language"]}, {"page": "Member Resources", "score": 2, "flags": ["Necessary", "Directed"], "friction": ["Outdated content", "Internal language", "Too many links", "Hidden important information", "Missing call to action", "Inconsistent tone", "Confusing navigation", "Not mobile-friendly", "Needs accessibility review"]}, {"page": "Other", "score": 0, "flags": [], "friction": ["Outdated content", "Internal language", "Too many links", "Hidden important information", "Missing call to action", "Inconsistent tone", "Confusing navigation", "Not mobile-friendly", "Needs accessibility review"]}, {"page": "Member Resources", "score": 4, "flags": ["Findable", "Intuitive", "Necessary", "Directed"], "friction": ["Outdated content", "Internal language", "Too many links", "Missing call to action", "Confusing navigation", "Needs accessibility review"]}, {"page": "Member Resources", "score": 4, "flags": ["Findable", "Intuitive", "Necessary", "Directed"], "friction": ["Hidden important information", "Confusing navigation"]}, {"page": "Member Resources", "score": 3, "flags": ["Findable", "Necessary", "Directed"], "friction": ["Outdated content", "Inconsistent tone", "Internal language", "Missing call to action", "Needs accessibility review", "Other"]}, {"page": "Forms", "score": 4, "flags": ["Findable", "Intuitive", "Necessary", "Directed"], "friction": ["Hidden important information", "Confusing navigation", "Missing call to action"]}, {"page": "Other", "score": 1, "flags": ["Findable"], "friction": ["Outdated content", "Internal language", "Too many links", "Hidden important information", "Missing call to action", "Inconsistent tone", "Confusing navigation", "Not mobile-friendly", "Needs accessibility review"]}, {"page": "Claims", "score": 2, "flags": ["Findable", "Directed"], "friction": ["Outdated content", "Hidden important information", "Too many links", "Confusing navigation"]}, {"page": "Other", "score": 0, "flags": [], "friction": []}, {"page": "Coverage", "score": 4, "flags": ["Findable", "Intuitive", "Necessary", "Directed"], "friction": ["Outdated content", "Internal language", "Missing call to action", "Inconsistent tone"]}, {"page": "Member Resources", "score": 2, "flags": ["Necessary", "Directed"], "friction": ["Outdated content", "Internal language", "Too many links", "Hidden important information", "Missing call to action", "Inconsistent tone", "Confusing navigation", "Not mobile-friendly", "Needs accessibility review", "Other"]}, {"page": "Member Resources", "score": 4, "flags": ["Findable", "Intuitive", "Necessary", "Directed"], "friction": ["Too many links", "Hidden important information", "Confusing navigation"]}, {"page": "Other", "score": 2, "flags": ["Intuitive", "Directed"], "friction": ["Outdated content", "Hidden important information", "Confusing navigation", "Not mobile-friendly", "Missing call to action", "Internal language", "Too many links", "Inconsistent tone", "Needs accessibility review"]}, {"page": "Other", "score": 2, "flags": ["Intuitive", "Directed"], "friction": []}]};
+
+(function(){
+  const Q = DATA.q;
+  const A = DATA.audits, PILLARS = ['Findable', 'Intuitive', 'Necessary', 'Directed'];
+  const share = (k) => Math.round(100 * k / A.length);
+  const WEB = {
+    n: String(A.length),
+    avg: (A.reduce((t, a) => t + a.score, 0) / A.length).toFixed(1),
+    anyGap: share(A.filter(a => a.score >= 1).length) + '%',
+    three: share(A.filter(a => a.score >= 3).length) + '%',
+    directed: share(A.filter(a => a.flags.includes('Directed')).length) + '%'
+  };
+  const pct = (seg, opt) => { const o = Q[seg].opts.find(x => x.id === opt); return o ? o.p : 0; };
+  const val = (key) => {
+    if (key === 'participants') return String(DATA.participants);
+    if (key.startsWith('shift.')) return String(DATA.shift[key.slice(6)]);
+    if (key.startsWith('web.')) return WEB[key.slice(4)];
+    const [seg, opt] = key.split('.'); return pct(seg, opt) + '%';
+  };
+  document.querySelectorAll('[data-v]').forEach(el => { el.textContent = val(el.dataset.v); });
+
+  const list = document.getElementById('dilemma-list');
+  DATA.dilemmas.forEach((d, i) => { const li = document.createElement('li'); const n = document.createElement('span'); n.textContent = String(i + 1).padStart(2, '0'); li.append(n, document.createTextNode(d)); list.appendChild(li); });
+
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); if (attrs.style) e.setAttribute('style', attrs.style); for (const k in attrs) { if (k === 'style') continue; const v = String(attrs[k]); if ((k === 'fill' || k === 'stroke') && v.startsWith('var(')) e.style[k] = v; else e.setAttribute(k, v); } if (parent) parent.appendChild(e); return e; };
+  // Write text that wraps onto extra lines within maxW; returns the number of lines.
+  const wrapText = (parent, x, y, s, maxW, attrs = {}, lh = 18) => {
+    const t = mk('text', Object.assign({ x, y, 'font-size': 14, fill: 'var(--ink)' }, attrs), parent);
+    const words = s.split(' '); let line = [], n = 0;
+    let ts = mk('tspan', { x, dy: 0 }, t);
+    words.forEach(w => { line.push(w); ts.textContent = line.join(' '); if (ts.getComputedTextLength() > maxW && line.length > 1) { line.pop(); ts.textContent = line.join(' '); line = [w]; ts = mk('tspan', { x, dy: lh }, t); ts.textContent = w; n++; } });
+    return n + 1;
+  };
+  const txt = (parent, x, y, s, attrs = {}) => { const t = mk('text', Object.assign({ x, y, 'font-size': 14, fill: 'var(--ink)' }, attrs), parent); t.textContent = s; return t; };
+
+  function tipFor(host){
+    let t = host.querySelector('.tip');
+    if (!t) { t = document.createElement('div'); t.className = 'tip'; t.hidden = true; host.appendChild(t); }
+    return {
+      show(ev, head, body){
+        t.replaceChildren(); const b = document.createElement('b'); b.textContent = head; t.appendChild(b);
+        body.forEach(l => { const d = document.createElement('div'); d.textContent = l; t.appendChild(d); });
+        t.hidden = false;
+        const r = host.getBoundingClientRect();
+        let x = ev.clientX - r.left + 12, y = ev.clientY - r.top + 14;
+        if (x + t.offsetWidth > r.width) x = Math.max(0, r.width - t.offsetWidth);
+        t.style.left = x + 'px'; t.style.top = y + 'px';
+      },
+      hide(){ t.hidden = true; }
+    };
+  }
+  function bindTip(el, tip, head, body){
+    el.addEventListener('mousemove', ev => tip.show(ev, head, body));
+    el.addEventListener('mouseleave', () => tip.hide());
+    el.addEventListener('click', ev => tip.show(ev, head, body));
+  }
+
+  // Bars with a (wrapping) label above each. items: [{label, bars:[{v,color,text}], head, body}]
+  function labelBars(id, items, opts = {}){
+    const host = document.getElementById(id); host.querySelectorAll('svg').forEach(s => s.remove());
+    const W = Math.max(260, host.clientWidth), valW = 46, bh = opts.bh || 14, gap = 5;
+    const svg = mk('svg', { role: 'img', 'aria-label': opts.aria || '' });
+    host.prepend(svg);
+    const tip = tipFor(host), x = v => (W - valW) * v / 100;
+    let y = 0;
+    items.forEach(it => {
+      const g = mk('g', { transform: `translate(0,${y})` }, svg);
+      const lines = wrapText(g, 0, 16, it.label, W - 4, { 'font-weight': 500 });
+      let by = 8 + lines * 18;
+      it.bars.forEach(b => {
+        mk('rect', { x: 0, y: by, width: W - valW, height: bh, rx: 4, fill: 'var(--track)' }, g);
+        mk('rect', { x: 0, y: by, width: Math.max(b.v ? 3 : 0, x(b.v)), height: bh, rx: 4, fill: b.color }, g);
+        txt(g, W, by + bh - 2, b.text, { 'text-anchor': 'end', 'font-size': 13, 'font-weight': 600, style: 'font-variant-numeric:tabular-nums' });
+        by += bh + gap;
+      });
+      const rowH = by + 14;
+      const hit = mk('rect', { x: 0, y: 0, width: W, height: rowH - 6, fill: 'transparent' }, g);
+      bindTip(hit, tip, it.head || it.label, it.body || []);
+      y += rowH;
+    });
+    svg.setAttribute('viewBox', `0 0 ${W} ${y}`);
+  }
+
+  // 100% stacked bars. rows: [{label, segs:[{v,color,name,intended}], legend:[{color,text}]}]
+  function stacks(id, rows){
+    const host = document.getElementById(id); host.querySelectorAll('svg').forEach(s => s.remove());
+    const W = Math.max(260, host.clientWidth), bh = 26;
+    const svg = mk('svg', { role: 'img' }); host.prepend(svg);
+    const tip = tipFor(host);
+    let y = 0;
+    rows.forEach(r => {
+      const ln = wrapText(svg, 0, y + 16, r.label, W - 4, { 'font-weight': 500 });
+      y += 8 + ln * 18; let acc = 0;
+      r.segs.forEach(s => {
+        const x0 = W * acc / 100, w = W * s.v / 100;
+        if (w > 0) {
+          const rect = mk('rect', { x: x0, y, width: w, height: bh, fill: s.color, stroke: s.intended ? 'var(--ink)' : 'var(--surface)', 'stroke-width': s.intended ? 2.5 : 1 }, svg);
+          bindTip(rect, tip, r.label, [s.name + ': ' + s.v + '% (' + s.n + ' of ' + r.total + ')']);
+          if (w > 38) txt(svg, x0 + w / 2, y + 18, s.v + '%', { 'text-anchor': 'middle', 'font-size': 13, 'font-weight': 700, fill: 'var(--on-bar)', 'pointer-events': 'none' });
+        }
+        acc += s.v;
+      });
+      y += bh;
+      (r.legend || []).forEach(l => {
+        y += 20;
+        mk('rect', { x: 0, y: y - 10, width: 10, height: 10, rx: 2, fill: l.color }, svg);
+        const n = wrapText(svg, 16, y, l.text, W - 20, { 'font-size': 13, fill: 'var(--ink-2)' }, 17);
+        y += (n - 1) * 17;
+      });
+      y += 26;
+    });
+    svg.setAttribute('viewBox', `0 0 ${W} ${y}`);
+  }
+
+  const c = n => `var(--${n})`;
+
+  function draw(){
+    // Mood: start vs end
+    const open = Q['pulse-open'], close = Q['pulse-close'];
+    labelBars('c-mood', open.opts.map(o => {
+      const e = close.opts.find(x => x.id === o.id);
+      return { label: o.a, bars: [{ v: o.p, color: c('muted-bar'), text: o.p + '%' }, { v: e.p, color: c('s1'), text: e.p + '%' }],
+        head: o.a, body: ['Start: ' + o.p + '% (' + o.n + ' of ' + open.n + ')', 'End: ' + e.p + '% (' + e.n + ' of ' + close.n + ')'] };
+    }), { bh: 12, aria: 'Start and end mood' });
+
+    const rd = Q['pulse-close-2'];
+    labelBars('c-ready', rd.opts.map(o => ({ label: o.a, bars: [{ v: o.p, color: c('s1'), text: o.p + '%' }], body: [o.p + '% (' + o.n + ' of ' + rd.n + ')'] })), { aria: 'Readiness' });
+
+    const agree = [
+      ['pq4', 'B', "AI doesn't shift accountability away from the employee"],
+      ['tc3', 'C', 'Red light: medical records in a personal AI account'],
+      ['m-water', 'B', 'Storm response: fast AI draft, reviewed before it goes out'],
+      ['m-press', 'B', 'Press release: AI drafts, a person verifies every fact'],
+      ['trust-check', 'B', 'Caught that AI missed a conflict in the policy'],
+      ['guardrail', 'B', 'HR complaint: AI organizes, a human investigator decides']
+    ].map(([s, o, label]) => { const q = Q[s], x = q.opts.find(y => y.id === o); return { label, v: x.p, bars: [{ v: x.p, color: c('s1'), text: x.p + '%' }], head: q.q, body: [x.a, x.p + '% (' + x.n + ' of ' + q.n + ')'] }; })
+      .sort((a, b) => b.v - a.v);
+    labelBars('c-agree', agree, { aria: 'Human-in-the-loop answers' });
+
+    const tl = { A: ['green', 'Green'], B: ['yellow', 'Yellow'], C: ['red', 'Red'] };
+    stacks('c-traffic', ['tc1', 'tc2', 'tc4', 'tc3'].map(s => {
+      const q = Q[s];
+      return { label: q.label, total: q.n, segs: q.opts.map(o => ({ v: o.p, n: o.n, color: c(tl[o.id][0]), name: tl[o.id][1] + (o.intended ? ' (intended answer)' : ''), intended: o.intended })) };
+    }));
+
+    const pal = [c('s1'), c('s2'), c('s3')];
+    stacks('c-policy', ['pq1', 'pq2', 'pq3', 'pq4', 'pq5'].map(s => {
+      const q = Q[s];
+      return { label: q.q, total: q.n, segs: q.opts.map((o, i) => ({ v: o.p, n: o.n, color: pal[i], name: o.a })), legend: q.opts.map((o, i) => ({ color: pal[i], text: o.p + '%  ' + o.a })) };
+    }));
+  }
+
+  function drawWeb(){
+    const pill = PILLARS.map(p => { const k = A.filter(a => a.flags.includes(p)).length; return { p, k, v: share(k) }; });
+    const top = Math.max(...pill.map(x => x.v));
+    labelBars('c-find', pill.map(x => ({ label: x.p, bars: [{ v: x.v, color: x.v === top ? c('s1') : c('muted-bar'), text: x.v + '%' }], body: [x.k + ' of ' + A.length + ' pages failed'] })), { aria: 'FIND test failures' });
+
+    const fc = {}; A.forEach(a => a.friction.forEach(f => { if (f !== 'Other') fc[f] = (fc[f] || 0) + 1; }));
+    labelBars('c-friction', Object.entries(fc).sort((a, b) => b[1] - a[1]).map(([f, k]) => ({ label: f, bars: [{ v: share(k), color: c('s2'), text: share(k) + '%' }], body: [k + ' of ' + A.length + ' pages'] })), { bh: 12, aria: 'Friction points' });
+
+    const g = {}; A.forEach(a => { (g[a.page] = g[a.page] || []).push(a.score); });
+    const pages = Object.entries(g).map(([p, s]) => ({ p, n: s.length, avg: s.reduce((x, y) => x + y, 0) / s.length })).sort((a, b) => b.n - a.n || b.avg - a.avg);
+    labelBars('c-pages', pages.map(x => ({ label: x.p + ' (' + x.n + (x.n === 1 ? ' page)' : ' pages)'), bars: [{ v: x.avg * 25, color: c('s1'), text: x.avg.toFixed(1) }], body: ['Average score ' + x.avg.toFixed(1) + ' of 4'] })), { aria: 'Average score by page type' });
+
+    const host = document.getElementById('c-scores'); host.querySelectorAll('svg').forEach(s => s.remove());
+    const W = Math.max(260, host.clientWidth), H = 200, top2 = 22, base = H - 34;
+    const counts = [0, 1, 2, 3, 4].map(sc => A.filter(a => a.score === sc).length), max = Math.max(...counts);
+    const svg = mk('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'Pages at each FIND score' }); host.prepend(svg);
+    const tip = tipFor(host), band = W / 5, bw = Math.min(46, band * .6);
+    mk('line', { x1: 0, x2: W, y1: base, y2: base, stroke: 'var(--line)' }, svg);
+    counts.forEach((k, i) => {
+      const h = (base - top2) * k / max, x = band * i + (band - bw) / 2;
+      mk('rect', { x, y: base - h, width: bw, height: h, rx: 4, fill: i >= 3 ? c('red') : c('s1') }, svg);
+      txt(svg, x + bw / 2, base - h - 6, String(k), { 'text-anchor': 'middle', 'font-size': 13, 'font-weight': 600 });
+      txt(svg, x + bw / 2, base + 18, String(i), { 'text-anchor': 'middle', 'font-size': 13, fill: 'var(--muted)' });
+      const hit = mk('rect', { x: band * i, y: top2, width: band, height: base - top2, fill: 'transparent' }, svg);
+      bindTip(hit, tip, 'Score ' + i, [k + (k === 1 ? ' page' : ' pages')]);
+    });
+    txt(svg, W / 2, H - 2, 'FIND score (tests failed)', { 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--muted)' });
+  }
+
+  function drawAll(){ draw(); drawWeb(); }
+  drawAll();
+  let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(drawAll, 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawAll);
+})();
+</script>
 </body>
 </html>

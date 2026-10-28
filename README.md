@@ -1,11 +1,12 @@
 # pool-stats
 
-Anonymous live audience results from Matt Burleson's (OMAG) conference sessions for public entity risk pool staff, published with GitHub Pages.
+Anonymous live audience results from 2026 conference sessions for public entity risk pool staff, published with GitHub Pages.
 
-| Page | Path |
-| --- | --- |
-| AI Control Room · NLC-RISC 2026 Staff Conference (Oct 27, 2026) | `nlc-risc-2026/` |
+The page (`index.html`) covers two sessions:
 
-Each results page is a single self-contained HTML file with its data embedded. No build step.
+- An interactive session on leveraging AI in pool work: mood and readiness, scenario votes, gray zones, AI policy votes and real dilemmas submitted by attendees.
+- A session on using AI to improve pool websites: FIND framework audits of pages from attendees' own pool websites.
 
-Section links on the NLC-RISC page: `#mood`, `#agreement`, `#gray-zones`, `#policy`, `#dilemmas`, `#about`.
+It's a single self-contained HTML file with the data embedded. No build step.
+
+Section links: `#mood`, `#agreement`, `#gray-zones`, `#policy`, `#dilemmas`, `#websites`, `#about`.
