@@ -1,12 +1,7 @@
 # pool-stats
 
-Anonymous live audience results from 2026 conference sessions for public entity risk pool staff, published with GitHub Pages.
+What public entity risk pool staff are saying about AI and their websites: the questions asked in two interactive 2026 conference sessions, how attendees responded (in general terms) and what it means for pools. Published with GitHub Pages.
 
-The page (`index.html`) covers two sessions:
+`index.html` is a single static page with no build step and no scripts.
 
-- An interactive session on leveraging AI in pool work: mood and readiness, scenario votes, gray zones, AI policy votes and real dilemmas submitted by attendees.
-- A session on using AI to improve pool websites: FIND framework audits of pages from attendees' own pool websites.
-
-It's a single self-contained HTML file with the data embedded. No build step.
-
-Section links: `#mood`, `#agreement`, `#gray-zones`, `#policy`, `#dilemmas`, `#websites`, `#about`.
+Section links: `#readiness`, `#agreement`, `#gray-zones`, `#policy`, `#asking`, `#websites`, `#about`. Each question card also has its own link (for example `#q-disclosure` or `#q-directed`).
